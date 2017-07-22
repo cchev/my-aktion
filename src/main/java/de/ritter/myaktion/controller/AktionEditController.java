@@ -20,7 +20,7 @@ import de.ritter.myaktion.util.Events.Updated;
  *
  */
 @Named 
-@SessionScoped
+@SessionScoped 
 public class AktionEditController implements Serializable {
 	private static final long serialVersionUID = -2035530493556059089L;
 	
