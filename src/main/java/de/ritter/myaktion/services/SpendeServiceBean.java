@@ -18,7 +18,7 @@ import de.ritter.myaktion.model.Spende;
  *
  */
 @Stateless
-public class SpendeServiceBean implements SpendeService {
+public class SpendeServiceBean implements SpendeService{
 	
 	@Inject
 	private EntityManager entityManager;
@@ -41,6 +41,8 @@ public class SpendeServiceBean implements SpendeService {
 	public void addSpende(Long aktionId, Spende spende) {
 		Aktion managedAktion = entityManager.find(Aktion.class, aktionId);
 		spende.setAktion(managedAktion);
+		if(spende.getBetrag() <= managedAktion.getSpendenBetrag())
+			throw new RuntimeException("Spendenbetrag zu klein");
 		entityManager.persist(spende);
 	}
 
