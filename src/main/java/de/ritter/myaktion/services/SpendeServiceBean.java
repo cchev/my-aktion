@@ -5,6 +5,8 @@ package de.ritter.myaktion.services;
 
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -26,6 +28,7 @@ public class SpendeServiceBean implements SpendeService{
 	/* (non-Javadoc)
 	 * @see de.ritter.myaktion.services.SpendeService#getSpendeList(java.lang.Long)
 	 */
+	@RolesAllowed("Organisator")
 	@Override
 	public List<Spende> getSpendeList(Long aktionId) {
 		Aktion managedAktion = entityManager.find(Aktion.class, aktionId);
@@ -37,6 +40,7 @@ public class SpendeServiceBean implements SpendeService{
 	/* (non-Javadoc)
 	 * @see de.ritter.myaktion.services.SpendeService#addSpende(java.lang.Long, de.ritter.myaktion.model.Spende)
 	 */
+	@PermitAll
 	@Override
 	public void addSpende(Long aktionId, Spende spende) {
 		Aktion managedAktion = entityManager.find(Aktion.class, aktionId);
