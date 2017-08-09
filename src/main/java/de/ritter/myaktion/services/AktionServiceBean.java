@@ -11,11 +11,13 @@ import javax.annotation.security.RolesAllowed;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import de.ritter.myaktion.model.Aktion;
 import de.ritter.myaktion.model.Organisator;
+import de.ritter.myaktion.util.DurationInterceptor;
 import de.ritter.myaktion.util.Loggers.FachLog;
 
 /**  
@@ -23,6 +25,7 @@ import de.ritter.myaktion.util.Loggers.FachLog;
  *
  */
 @RolesAllowed("Organisator")
+@Interceptors(DurationInterceptor.class)
 @Stateless
 public class AktionServiceBean implements AktionService {
 	
